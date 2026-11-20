@@ -1,0 +1,25 @@
+{
+  "migIndex": 1,
+  "data": [
+    {
+      "path": "src/assets/Fonts/Hellix-Bold.ttf",
+      "sha1": "4217be81ace6cba1317d2edbec34564b00b303a4"
+    },
+    {
+      "path": "src/assets/Fonts/Hellix-Medium.ttf",
+      "sha1": "42f1268c7f5df48421ee558b80d69aab8aece1f2"
+    },
+    {
+      "path": "src/assets/Fonts/Hellix-Regular.ttf",
+      "sha1": "d3fca24f9ecc75d7c0b35dcbf6e388648d282ea1"
+    },
+    {
+      "path": "src/assets/Fonts/Hellix-SemiBold.ttf",
+      "sha1": "1b0c5873ee0aae874e591a72b95b12b0b825eba1"
+    },
+    {
+      "path": "src/assets/Fonts/index.ts",
+      "sha1": "89959f0cd1708bd663fa434e8b069ac687dff0b1"
+    }
+  ]
+}

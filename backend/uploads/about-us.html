@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+  <title>About Us - Flagship Towing</title>
+  <link href="https://fonts.googleapis.com/css2?family=Hellix&display=swap" rel="stylesheet" />
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Hellix', sans-serif;
+      background-color: #f9f9f9;
+      color: #333;
+      padding: 0;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: auto;
+      padding: 40px 20px;
+    }
+
+    .logo {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    .logo img {
+      max-width: 180px;
+      height: auto;
+    }
+
+    h1 {
+      color: #0118FF;
+      font-weight: 600;
+      font-size: 32px;
+      line-height: 1.2;
+      margin: 0 0 8px;
+      text-align: center;
+    }
+
+    h2 {
+      color: #0118FF;
+      margin-top: 40px;
+      font-weight: 600;
+    }
+
+    p {
+      line-height: 1.7;
+      font-size: 16px;
+      margin-top: 10px;
+    }
+
+    ul {
+      list-style-type: disc;
+      padding-left: 20px;
+    }
+
+    ul li {
+      margin-bottom: 10px;
+    }
+
+    @media (max-width: 600px) {
+      .container {
+        padding: 20px 15px;
+      }
+
+      .logo img {
+        max-width: 140px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <!-- <div class="logo">
+      <img src="logo.png" alt="Flagship Towing Logo" />
+    </div> -->
+    <h1 id="page-heading">About Us</h1>
+    <h2>Welcome to Flagship Towing!</h2>
+    <p>
+      Our mission is to deliver an affordable, friendly, and reliable on-water service while prioritizing safety,
+      integrity, and attention to detail in all operations. The captains and staff at Flagship Towing are committed to
+      serving our customers, bringing extensive knowledge and experience accumulated over many years on the water.
+    </p>
+
+    <p>
+      Flagship Towing specializes in assistance towing and on-water services, including jump starts, fuel delivery,
+      removal of stuck anchors, propeller disentanglement, ungrounding's, salvage, wreck removal, vessel disposal
+      services, storage, and impounds. Membership programs are also available for saltwater and freshwater boaters, as
+      well as commercial businesses.
+    </p>
+
+    <p>
+      Please do not hesitate to contact our dispatch line for around-the-clock assistance. We understand that you have a
+      choice in your on-water assistance provider, and we look forward to assisting you during your time of need.
+    </p>
+
+    <p>
+      See you on the water!
+    </p>
+  </div>
+  <script>
+    (function () {
+      var hide = false;
+      try {
+        hide = new URLSearchParams(window.location.search).get('hideHeading') === '1';
+      } catch (e) {}
+      if (hide || window.__HIDE_PAGE_HEADING__ === true) {
+        var heading = document.getElementById('page-heading');
+        if (heading) heading.hidden = true;
+      }
+    })();
+  </script>
+</body>
+
+
+</html>

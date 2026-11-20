@@ -1,0 +1,67 @@
+diff --git a/node_modules/react-native-maps/ios/AirGoogleMaps/AIRGoogleMapURLTileManager.m b/node_modules/react-native-maps/ios/AirGoogleMaps/AIRGoogleMapURLTileManager.m
+index ee501d8..c46374e 100644
+--- a/node_modules/react-native-maps/ios/AirGoogleMaps/AIRGoogleMapURLTileManager.m
++++ b/node_modules/react-native-maps/ios/AirGoogleMaps/AIRGoogleMapURLTileManager.m
+@@ -27,6 +27,7 @@ RCT_EXPORT_VIEW_PROPERTY(zIndex, int)
+ RCT_EXPORT_VIEW_PROPERTY(maximumZ, NSInteger)
+ RCT_EXPORT_VIEW_PROPERTY(minimumZ, NSInteger)
+ RCT_EXPORT_VIEW_PROPERTY(flipY, BOOL)
++RCT_EXPORT_VIEW_PROPERTY(opacity, CGFloat)
+ 
+ @end
+ 
+diff --git a/node_modules/react-native-maps/ios/AirGoogleMaps/AIRGoogleMapUrlTile.h b/node_modules/react-native-maps/ios/AirGoogleMaps/AIRGoogleMapUrlTile.h
+index 05b2afd..813263c 100644
+--- a/node_modules/react-native-maps/ios/AirGoogleMaps/AIRGoogleMapUrlTile.h
++++ b/node_modules/react-native-maps/ios/AirGoogleMaps/AIRGoogleMapUrlTile.h
+@@ -16,6 +16,7 @@
+ @property NSInteger *maximumZ;
+ @property NSInteger *minimumZ;
+ @property BOOL flipY;
++@property (nonatomic, assign) CGFloat opacity;
+ 
+ @end
+ 
+diff --git a/node_modules/react-native-maps/ios/AirGoogleMaps/AIRGoogleMapUrlTile.m b/node_modules/react-native-maps/ios/AirGoogleMaps/AIRGoogleMapUrlTile.m
+index b2e1eea..1ab20e7 100644
+--- a/node_modules/react-native-maps/ios/AirGoogleMaps/AIRGoogleMapUrlTile.m
++++ b/node_modules/react-native-maps/ios/AirGoogleMaps/AIRGoogleMapUrlTile.m
+@@ -9,17 +9,38 @@
+ 
+ @implementation AIRGoogleMapUrlTile
+ 
++- (instancetype)init
++{
++  if ((self = [super init])) {
++    _opacity = 1;
++  }
++  return self;
++}
++
+ - (void)setZIndex:(int)zIndex
+ {
+   _zIndex = zIndex;
+   _tileLayer.zIndex = zIndex;
+ }
+ 
++- (void)setOpacity:(CGFloat)opacity
++{
++  _opacity = opacity;
++  _tileLayer.opacity = opacity;
++}
++
+ - (void)setUrlTemplate:(NSString *)urlTemplate
+ {
+   _urlTemplate = urlTemplate;
++  // A template change rebuilds the layer. Keep it on the same map and carry
++  // the already-applied props over, otherwise the new layer is never attached.
++  GMSMapView *map = _tileLayer.map;
++  _tileLayer.map = nil;
+   _tileLayer = [GMSURLTileLayer tileLayerWithURLConstructor:[self _getTileURLConstructor]];
+   _tileLayer.tileSize = [[UIScreen mainScreen] scale] * 256;
++  _tileLayer.zIndex = _zIndex;
++  _tileLayer.opacity = _opacity;
++  _tileLayer.map = map;
+ }
+ 
+ - (GMSTileURLConstructor)_getTileURLConstructor

@@ -1,0 +1,52 @@
+{
+  "name": "flagship-admin",
+  "private": true,
+  "version": "5.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "build:staging": "vite build",
+    "lint": "eslint .",
+    "preview": "vite preview --host 0.0.0.0 --port 60029",
+    "pm2": "pm2 start ./node_modules/vite/bin/vite.js --name \"flagship-admin-60029-staging\" -- preview --host 0.0.0.0 --port 60029",
+    "port-killer": "kill -9 $(lsof -t -i:60029) 2>/dev/null || true"
+  },
+  "dependencies": {
+    "@reduxjs/toolkit": "^2.8.2",
+    "@tailwindcss/vite": "^4.1.11",
+    "@tiptap/extension-color": "^3.23.5",
+    "@tiptap/extension-link": "^3.23.5",
+    "@tiptap/extension-text-align": "^3.23.5",
+    "@tiptap/extension-text-style": "^3.23.5",
+    "@tiptap/extension-underline": "^3.23.5",
+    "@tiptap/pm": "^3.23.5",
+    "@tiptap/react": "^3.23.5",
+    "@tiptap/starter-kit": "^3.23.5",
+    "dayjs": "^1.11.13",
+    "firebase": "^12.4.0",
+    "framer-motion": "^12.23.12",
+    "lucide-react": "^0.536.0",
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0",
+    "react-hook-form": "^7.61.1",
+    "react-hot-toast": "^2.5.2",
+    "react-redux": "^9.2.0",
+    "react-router-dom": "^7.7.1",
+    "sweetalert2": "^11.22.2"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.30.1",
+    "@types/react": "^19.1.8",
+    "@types/react-dom": "^19.1.6",
+    "@vitejs/plugin-react": "^4.6.0",
+    "autoprefixer": "^10.4.21",
+    "eslint": "^9.30.1",
+    "eslint-plugin-react-hooks": "^5.2.0",
+    "eslint-plugin-react-refresh": "^0.4.20",
+    "globals": "^16.3.0",
+    "postcss": "^8.5.6",
+    "tailwindcss": "^4.1.11",
+    "vite": "^7.0.4"
+  }
+}

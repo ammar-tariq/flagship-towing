@@ -1,0 +1,29 @@
+{
+    "subTitle": "Is your boat not starting? Here are some self help tips while you wait:",
+    "items": [
+        {
+            "text": "Ensure your safety lanyard is properly attached."
+        },
+        {
+            "text": "Verify that your throttle is in the neutral position."
+        },
+        {
+            "text": "Check your battery cables to make sure they are connected properly and the battery switch is turned to the on position."
+        },
+        {
+            "text": "Verify the fuel and oil levels of your vessel are adequate."
+        },
+        {
+            "text": "Keep an eye on your ski rope to ensure it is not entangled in your propellor."
+        },
+        {
+            "text": "Drop your anchor if possible to make sure you will not float into the shoreline/rocks."
+        },
+        {
+            "text": "If this is a life threatening or medical emergency, please call 911."
+        },
+        {
+            "text": "The U.S. Coast Guard can be contacted on VHF Channel 16."
+        }
+    ]
+}

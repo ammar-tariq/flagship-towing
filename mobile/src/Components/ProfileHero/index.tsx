@@ -1,0 +1,1 @@
+export {profileLayout} from './styles';

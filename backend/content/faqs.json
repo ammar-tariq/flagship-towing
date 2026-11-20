@@ -1,0 +1,37 @@
+[
+    {
+        "title": "Question-01",
+        "question": "I bought a Membership today and now my vessel broke down, will you come tow me for free?",
+        "answer": "All Memberships have a 48 hour activation period. Until the Membership is activated, services will be charged at our standard billing rate."
+    },
+    {
+        "title": "Question-02",
+        "question": "If I sell my vessel, can my Membership transfer to the buyer?",
+        "answer": "No, the Membership is not transferable."
+    },
+    {
+        "title": "Question-03",
+        "question": "If I let my friend borrow my vessel for the day without me on it, are they covered?",
+        "answer": "They would only be covered if you have them on your account as an authorized user in your Membership."
+    },
+    {
+        "title": "Question-04",
+        "question": "Does my Membership cover dock to dock tows?",
+        "answer": "No, dock to dock tows are not covered in your Membership. However, you do get a discounted hourly rate for being a member. This is the same for dock to ramp, dock to trailer, or dock to on water repair facility."
+    },
+    {
+        "title": "Question-05",
+        "question": "If I share ownership of my vessel, is the co-owner covered as well?",
+        "answer": "Yes, you just need to make sure that you add them as an authorized user on your Membership."
+    },
+    {
+        "title": "Question-06",
+        "question": "Do I have a member ID number?",
+        "answer": "Your registration number serves as your member ID. Please add it to your vessel so we can easily identify you. Membership Id numbers are unique to the vessel, not to the individual."
+    },
+    {
+        "title": "Question-07",
+        "question": "My membership username is under my first and last name. Do I need to add myself as an authorized user even though I am the account holder?",
+        "answer": "No, account holders do not need to add themselves as authorized users on their account/profile."
+    }
+]

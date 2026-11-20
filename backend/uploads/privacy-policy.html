@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+  <title>Privacy Policy - Flagship Towing</title>
+  <link href="https://fonts.googleapis.com/css2?family=Hellix:wght@400;600&display=swap" rel="stylesheet" />
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Hellix', sans-serif;
+      background-color: #f9f9f9;
+      color: #333;
+    }
+    .container {
+      max-width: 900px;
+      margin: auto;
+      padding: 40px 20px;
+    }
+    .logo {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+    .logo img {
+      max-width: 180px;
+      height: auto;
+    }
+    h1 {
+      color: #0118FF;
+      font-weight: 600;
+      font-size: 32px;
+      line-height: 1.2;
+      margin: 0 0 8px;
+      text-align: center;
+    }
+    h2 {
+      color: #0118FF;
+      font-weight: 600;
+      margin-top: 40px;
+    }
+    p {
+      font-size: 16px;
+      line-height: 1.7;
+      margin-top: 10px;
+    }
+    ul {
+      list-style-type: disc;
+      padding-left: 20px;
+    }
+    li {
+      margin-bottom: 10px;
+    }
+    @media (max-width: 600px) {
+      .container {
+        padding: 20px 15px;
+      }
+      .logo img {
+        max-width: 140px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="logo">
+      <img src="logo.png" alt="Flagship Towing Logo" />
+    </div>
+
+    <h1 id="page-heading">Privacy Policy</h1>
+
+    <h2>Information We Collect</h2>
+    <p>
+      During service requests and communication, we may collect limited information to provide you with reliable and personalized service:
+    </p>
+    <ul>
+      <li>Your name</li>
+      <li>Your phone number</li>
+      <li>Your email address</li>
+      <li>Your location and/or boat's location</li>
+    </ul>
+
+    <p>
+      Flagship Towing is a service designed to provide towing, salvage, recovery, and on-water assistance. We do not collect financial or health-related information.
+    </p>
+
+    <h2>Data Use & Protection</h2>
+    <p>We use your data exclusively to:</p>
+    <ul>
+      <li>Identify you and your vessel</li>
+      <li>Provide accurate and prompt service</li>
+      <li>Improve and personalize our operations</li>
+    </ul>
+    <p>
+      Your data is kept confidential and secured with appropriate safeguards. We do not sell, share, or disclose your information to third parties except when required by insurers or authorities in the course of service delivery.
+    </p>
+
+    <h2>Account Deletion &amp; Data Retention</h2>
+    <p>
+      You can delete your account at any time from the Profile section of the app, or from the <a href="delete-account.html">delete account</a> page on the web. When you delete your account, your profile, vessels, and related details are removed, and any running membership is cancelled and will not renew.
+    </p>
+    <p>
+      Limited records, such as membership and payment history, are retained for accounting purposes after your account is deleted.
+    </p>
+
+    <h2>Your Rights</h2>
+    <p>
+      You can contact us at any time to ask questions or request deletion of your data. Please use the “Contact Us” option on our website or call us directly at 1-888-BOAT-TOW.
+    </p>
+  </div>
+  <script>
+    (function () {
+      var hide = false;
+      try {
+        hide = new URLSearchParams(window.location.search).get('hideHeading') === '1';
+      } catch (e) {}
+      if (hide || window.__HIDE_PAGE_HEADING__ === true) {
+        var heading = document.getElementById('page-heading');
+        if (heading) heading.hidden = true;
+      }
+    })();
+  </script>
+</body>
+</html>

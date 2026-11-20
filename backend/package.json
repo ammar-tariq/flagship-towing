@@ -1,0 +1,55 @@
+{
+  "name": "flagship-towing-api",
+  "version": "5.0.0",
+  "main": "app.js",
+  "license": "MIT",
+  "private": true,
+  "engines": {
+    "node": ">=20"
+  },
+  "resolutions": {
+    "jwa": "^2.0.1",
+    "jws": "^4.0.1"
+  },
+  "scripts": {
+    "server": "node app.js",
+    "server:dev": "nodemon app.js",
+    "import:users": "node scripts/import-users-from-sheet.js",
+    "import:users:eligible": "node scripts/import-users-from-sheet.js --eligible-only --skip-existing",
+    "db:backfill-inquiry-serials": "node scripts/backfill-inquiry-serials.js",
+    "gmail:oauth": "node scripts/gmail-oauth-setup.js",
+    "email:test": "node scripts/test-send-email.js",
+    "db:backup": "node scripts/backup-database-to-json.js",
+    "db:backup:one-file": "node scripts/backup-database-to-json.js --one-file",
+    "pm2": "pm2 start ecosystem.config.js",
+    "port-killer": "kill -9 $(lsof -t -i:60028) 2>/dev/null || true"
+  },
+  "dependencies": {
+    "archiver": "^7.0.1",
+    "bcryptjs": "^2.4.3",
+    "cookie-parser": "^1.4.6",
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.3",
+    "ejs": "^3.1.10",
+    "exceljs": "^4.4.0",
+    "express": "^4.18.2",
+    "express-rate-limit": "^8.6.0",
+    "firebase-admin": "^11.9.0",
+    "googleapis": "^131.0.0",
+    "helmet": "^8.3.0",
+    "http": "^0.0.1-security",
+    "https": "^1.0.0",
+    "jsonwebtoken": "^9.0.3",
+    "mongoose": "^7.1.1",
+    "morgan": "^1.10.0",
+    "multer": "^1.4.5-lts.1",
+    "node-fetch": "^3.3.2",
+    "nodemailer": "^6.9.2",
+    "nodemon": "^2.0.22",
+    "passkit-generator": "^3.5.2",
+    "socket.io": "^4.8.1",
+    "stripe": "^17.6.0",
+    "uuid": "^13.0.0",
+    "xlsx": "^0.18.5"
+  }
+}

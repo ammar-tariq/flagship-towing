@@ -1,0 +1,32 @@
+/node_modules
+/public
+# Uploads: ignore folder contents but keep .html files
+uploads/*
+!uploads/*.html
+
+# Environment and secrets — never commit
+.env
+.env.*
+!.env.example
+
+# Firebase Admin service account
+src/configs/flagshiptowing.json
+
+# Gmail OAuth client and tokens (scripts/gmail-oauth-setup.js)
+googleOAuth.json
+googleOAuth.tokens.json
+
+# Wallet certificates and keys
+certs/*
+!certs/README.md
+*.p12
+*.pem
+*.key
+*service-account*.json
+
+# Temporary pass generation files
+.tmp-passes/
+
+# Super-admin activity JSONL (also stored in Mongo)
+logs/
+!uploads/delete-account.html

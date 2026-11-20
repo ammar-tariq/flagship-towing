@@ -1,0 +1,49 @@
+/**
+ * Portal Tailwind bundle — intentionally WITHOUT global preflight so
+ * Spacecrafted header/footer styles are not reset on portal pages.
+ */
+@layer theme, base, components, utilities;
+
+@import "tailwindcss/theme.css" layer(theme);
+@import "tailwindcss/utilities.css" layer(utilities);
+
+@source "../*.html";
+@source "../js/*.js";
+
+@font-face {
+  font-family: "Hellix";
+  src: url("../assets/fonts/Hellix-Regular.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Hellix";
+  src: url("../assets/fonts/Hellix-Bold.ttf") format("truetype");
+  font-weight: 700;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Hellix";
+  src: url("../assets/fonts/Hellix-Medium.ttf") format("truetype");
+  font-weight: 500;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Hellix";
+  src: url("../assets/fonts/Hellix-SemiBold.ttf") format("truetype");
+  font-weight: 600;
+  font-style: normal;
+}
+
+@theme {
+  --color-primary: #0118ff;
+  --color-secondary: #000000;
+  --color-primary-light: rgba(212, 125, 65, 0.1);
+}
+
+.pac-container {
+  z-index: 100000 !important;
+}

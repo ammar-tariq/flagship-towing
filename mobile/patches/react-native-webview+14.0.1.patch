@@ -1,0 +1,28 @@
+diff --git a/node_modules/react-native-webview/src/WebView.android.tsx b/node_modules/react-native-webview/src/WebView.android.tsx
+index 15e9dee..640755b 100644
+--- a/node_modules/react-native-webview/src/WebView.android.tsx
++++ b/node_modules/react-native-webview/src/WebView.android.tsx
+@@ -95,6 +95,7 @@ const WebViewComponent = forwardRef<unknown, AndroidWebViewProps>(
+       nativeConfig,
+       onShouldStartLoadWithRequest: onShouldStartLoadWithRequestProp,
+       injectedJavaScriptObject,
++      dataDetectorTypes,
+       ...otherProps
+     },
+     ref,
+@@ -286,6 +287,15 @@ const WebViewComponent = forwardRef<unknown, AndroidWebViewProps>(
+         allowFileAccess={allowFileAccess}
+         saveFormDataDisabled={saveFormDataDisabled}
+         cacheEnabled={cacheEnabled}
++        // Fabric casts this as a vector. A string (or the codegen default
++        // "phoneNumber") aborts at RawValue.h:431 / value.isObject().
++        dataDetectorTypes={
++          dataDetectorTypes == null
++            ? ['none']
++            : Array.isArray(dataDetectorTypes)
++              ? dataDetectorTypes
++              : [dataDetectorTypes]
++        }
+         androidLayerType={androidLayerType}
+         setSupportMultipleWindows={setSupportMultipleWindows}
+         setBuiltInZoomControls={setBuiltInZoomControls}

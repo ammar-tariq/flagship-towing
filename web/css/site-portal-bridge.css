@@ -1,0 +1,72 @@
+/* Portal content layout inside the Spacecrafted site shell */
+.flagship-portal-main {
+  box-sizing: border-box;
+  max-width: 72rem;
+  margin: 0 auto;
+  padding: 1.25rem 1rem 3rem;
+}
+
+.flagship-portal-main *,
+.flagship-portal-main *::before,
+.flagship-portal-main *::after {
+  box-sizing: border-box;
+}
+
+.flagship-main-offset {
+  margin-top: 151px;
+}
+
+.flagship-portal-main.flagship-auth-main {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  min-height: 40vh;
+  padding: 2rem 1rem 4rem;
+}
+
+.flagship-auth-card-wrap {
+  width: 100%;
+  max-width: 36rem;
+}
+
+.flagship-auth-card {
+  background: #fff;
+  border-radius: 1rem;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+  border: 1px solid #e5e7eb;
+  overflow: hidden;
+}
+
+.flagship-portal-page-header {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.flagship-portal-page-header h1 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin: 0;
+}
+
+.flagship-portal-back {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.5rem;
+  border-radius: 0.375rem;
+  color: inherit;
+  text-decoration: none;
+}
+
+.flagship-portal-back:hover {
+  background: #f3f4f6;
+}
+
+@media only screen and (max-width: 767px) {
+  .flagship-main-offset {
+    margin-top: 0;
+  }
+}

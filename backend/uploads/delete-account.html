@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+  <title>Delete Account - Flagship Towing</title>
+  <link href="https://fonts.googleapis.com/css2?family=Hellix:wght@400;600&display=swap" rel="stylesheet" />
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Hellix', sans-serif;
+      background-color: #f9f9f9;
+      color: #333;
+    }
+    .container {
+      max-width: 720px;
+      margin: auto;
+      padding: 40px 20px 64px;
+    }
+    h1 {
+      color: #0118FF;
+      font-weight: 600;
+      font-size: 32px;
+      line-height: 1.2;
+      margin: 0 0 8px;
+      text-align: center;
+    }
+    h2 {
+      color: #0118FF;
+      font-weight: 600;
+      margin-top: 32px;
+      margin-bottom: 8px;
+      font-size: 20px;
+    }
+    p, li, label {
+      font-size: 16px;
+      line-height: 1.7;
+    }
+    ul {
+      padding-left: 20px;
+    }
+    li {
+      margin-bottom: 8px;
+    }
+    a {
+      color: #0118FF;
+    }
+    form, .panel {
+      margin-top: 28px;
+      background: #fff;
+      border: 1px solid #e6e6e6;
+      border-radius: 12px;
+      padding: 20px;
+    }
+    label {
+      display: block;
+      font-weight: 600;
+      margin-bottom: 6px;
+    }
+    input[type="email"],
+    input[type="password"] {
+      width: 100%;
+      box-sizing: border-box;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      padding: 12px 14px;
+      font: inherit;
+      margin-bottom: 16px;
+    }
+    .check {
+      display: flex;
+      gap: 10px;
+      align-items: flex-start;
+      margin: 8px 0 18px;
+      font-weight: 400;
+    }
+    .check input {
+      margin-top: 6px;
+    }
+    button {
+      appearance: none;
+      border: 0;
+      border-radius: 8px;
+      background: #b42318;
+      color: #fff;
+      font: inherit;
+      font-weight: 600;
+      padding: 12px 18px;
+      cursor: pointer;
+    }
+    button[disabled] {
+      opacity: 0.6;
+      cursor: default;
+    }
+    button.secondary {
+      background: #fff;
+      color: #333;
+      border: 1px solid #ccc;
+      margin-right: 8px;
+    }
+    .error {
+      color: #b42318;
+      margin: 0 0 12px;
+    }
+    .success {
+      color: #067647;
+    }
+    .hidden {
+      display: none;
+    }
+    @media (max-width: 600px) {
+      .container {
+        padding: 20px 15px 48px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1 id="page-heading">Delete Account</h1>
+    <p>
+      Use this page to permanently delete your Flagship Towing account. You do not need the app. Sign in with the email and password on the account to confirm it is yours.
+    </p>
+
+    <h2>What we delete</h2>
+    <ul>
+      <li>Your profile, including your name, email, phone, and mailing address</li>
+      <li>Vessels saved on the account</li>
+      <li>Family members, service requests, and messages tied to the account</li>
+      <li>Sign-in sessions on your devices</li>
+    </ul>
+
+    <h2>What we keep</h2>
+    <p>
+      Limited membership and payment records are kept for accounting. A running membership is cancelled and will not renew. Membership fees already paid are not refunded.
+    </p>
+    <p>
+      You can also delete the account from the Profile section of the Flagship Towing app. If you signed in with Apple or Google and do not have a password, use the app, or call 1-888-BOAT-TOW.
+    </p>
+
+    <form id="delete-form">
+      <p id="form-error" class="error hidden" role="alert"></p>
+      <label for="email">Email</label>
+      <input id="email" name="email" type="email" autocomplete="username" required />
+      <label for="password">Password</label>
+      <input id="password" name="password" type="password" autocomplete="current-password" required />
+      <label class="check">
+        <input id="understand" type="checkbox" required />
+        <span>I understand this permanently deletes my account and cannot be undone.</span>
+      </label>
+      <button id="submit" type="submit">Delete account</button>
+    </form>
+
+    <div id="warning" class="panel hidden">
+      <p id="warning-text"></p>
+      <label class="check">
+        <input id="confirm-extra" type="checkbox" />
+        <span id="confirm-extra-label">I still want to delete this account.</span>
+      </label>
+      <p id="warning-error" class="error hidden" role="alert"></p>
+      <button id="warning-back" class="secondary" type="button">Back</button>
+      <button id="warning-confirm" type="button">Delete account</button>
+    </div>
+
+    <div id="done" class="panel hidden">
+      <p class="success" id="done-text">Your account has been permanently deleted.</p>
+      <p>A confirmation was sent to your email when delivery succeeded. You can close this page.</p>
+    </div>
+  </div>
+  <script>
+    (function () {
+      var hide = false;
+      try {
+        hide = new URLSearchParams(window.location.search).get('hideHeading') === '1';
+      } catch (e) {}
+      if (hide || window.__HIDE_PAGE_HEADING__ === true) {
+        var heading = document.getElementById('page-heading');
+        if (heading) heading.hidden = true;
+      }
+
+      var form = document.getElementById('delete-form');
+      var formError = document.getElementById('form-error');
+      var warning = document.getElementById('warning');
+      var warningText = document.getElementById('warning-text');
+      var warningError = document.getElementById('warning-error');
+      var confirmExtra = document.getElementById('confirm-extra');
+      var confirmLabel = document.getElementById('confirm-extra-label');
+      var done = document.getElementById('done');
+      var doneText = document.getElementById('done-text');
+      var submit = document.getElementById('submit');
+      var session = null;
+
+      function apiBase() {
+        var path = window.location.pathname || '';
+        var uploadsAt = path.indexOf('/uploads/');
+        if (uploadsAt > 0) {
+          return window.location.origin + path.slice(0, uploadsAt);
+        }
+        if (window.location.hostname.indexOf('projectstagingzone') !== -1) {
+          return window.location.origin + '/flagship-towing/v1/api';
+        }
+        return window.location.origin;
+      }
+
+      function showError(node, message) {
+        node.textContent = message || 'Something went wrong. Try again.';
+        node.classList.remove('hidden');
+      }
+
+      function clearError(node) {
+        node.textContent = '';
+        node.classList.add('hidden');
+      }
+
+      async function request(path, options) {
+        var headers = {
+          Accept: 'application/json',
+          'Content-Type': 'application/json'
+        };
+        if (options.token) headers.Authorization = 'Bearer ' + options.token;
+        var response = await fetch(apiBase() + path, {
+          method: options.method,
+          headers: headers,
+          body: options.body ? JSON.stringify(options.body) : undefined
+        });
+        var data = {};
+        try { data = await response.json(); } catch (e) {}
+        return { ok: response.ok, status: response.status, data: data };
+      }
+
+      function messageOf(result, fallback) {
+        return (result.data && (result.data.message || result.data.error)) || fallback;
+      }
+
+      async function finishDelete() {
+        var body = { password: session.password };
+        if (session.preview && session.preview.has_active_membership) {
+          body.cancelMembership = true;
+        }
+        if (!session.preview || !session.preview.has_active_membership) {
+          body.confirmAccountDelete = true;
+        }
+        var result = await request('/user/delete', {
+          method: 'POST',
+          token: session.token,
+          body: body
+        });
+        if (!result.ok) {
+          throw new Error(messageOf(result, 'Unable to delete this account.'));
+        }
+        session = null;
+        form.classList.add('hidden');
+        warning.classList.add('hidden');
+        done.classList.remove('hidden');
+        if (result.data && result.data.message) doneText.textContent = result.data.message;
+      }
+
+      form.addEventListener('submit', async function (event) {
+        event.preventDefault();
+        clearError(formError);
+        if (!document.getElementById('understand').checked) {
+          showError(formError, 'Confirm that you understand this cannot be undone.');
+          return;
+        }
+        var email = document.getElementById('email').value.trim();
+        var password = document.getElementById('password').value;
+        submit.disabled = true;
+        try {
+          var login = await request('/auth/login', {
+            method: 'POST',
+            body: { email: email, password: password, source: 'user' }
+          });
+          if (!login.ok || !(login.data && (login.data.token || login.data.accessToken))) {
+            throw new Error(messageOf(login, 'That email or password does not match.'));
+          }
+          var token = login.data.token || login.data.accessToken;
+          var preview = await request('/user/delete-preview', {
+            method: 'GET',
+            token: token
+          });
+          if (!preview.ok) {
+            throw new Error(messageOf(preview, 'Unable to review this account.'));
+          }
+          session = {
+            token: token,
+            password: password,
+            preview: preview.data && preview.data.data
+          };
+          var info = session.preview || {};
+          if (info.has_active_membership || info.has_expired_membership) {
+            var days = info.days_remaining;
+            if (info.has_active_membership) {
+              warningText.textContent = days === 1
+                ? 'This account has a membership with 1 day left. Deleting the account cancels it. Fees already paid are not refunded.'
+                : 'This account has a running membership' + (typeof days === 'number' ? ' with ' + days + ' days left' : '') + '. Deleting the account cancels it. Fees already paid are not refunded.';
+              confirmLabel.textContent = 'Cancel my membership and permanently delete this account.';
+            } else {
+              warningText.textContent = 'This account has an expired membership. Deleting the account permanently removes the profile and related details. Payment records are kept for accounting.';
+              confirmLabel.textContent = 'Permanently delete this account.';
+            }
+            confirmExtra.checked = false;
+            clearError(warningError);
+            form.classList.add('hidden');
+            warning.classList.remove('hidden');
+            return;
+          }
+          await finishDelete();
+        } catch (error) {
+          showError(formError, error.message);
+        } finally {
+          submit.disabled = false;
+        }
+      });
+
+      document.getElementById('warning-back').addEventListener('click', function () {
+        session = null;
+        warning.classList.add('hidden');
+        form.classList.remove('hidden');
+      });
+
+      document.getElementById('warning-confirm').addEventListener('click', async function () {
+        clearError(warningError);
+        if (!confirmExtra.checked) {
+          showError(warningError, 'Check the box to confirm deletion.');
+          return;
+        }
+        var button = document.getElementById('warning-confirm');
+        button.disabled = true;
+        try {
+          await finishDelete();
+        } catch (error) {
+          showError(warningError, error.message);
+        } finally {
+          button.disabled = false;
+        }
+      });
+    })();
+  </script>
+</body>
+</html>

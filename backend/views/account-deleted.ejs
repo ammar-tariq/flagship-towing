@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Account deleted</title>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Nunito', sans-serif;
+            background-color: #f4f4f7;
+            font-size: 15px;
+            line-height: 1.5;
+            color: #333;
+        }
+        .email-wrap {
+            max-width: 560px;
+            margin: 0 auto;
+            padding: 24px 16px;
+        }
+        .card {
+            background: #fff;
+            border-radius: 8px;
+            padding: 28px 24px;
+        }
+        .brand {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .brand img {
+            max-height: 44px;
+            width: auto;
+        }
+        .divider {
+            height: 3px;
+            background: #0118FF;
+            margin: 0 0 20px 0;
+            border-radius: 2px;
+        }
+        .greeting {
+            font-size: 16px;
+            color: #333;
+            margin: 0 0 16px 0;
+        }
+        .message {
+            margin: 0 0 20px 0;
+            color: #444;
+        }
+        .message strong {
+            color: #0118FF;
+        }
+        .cta-wrap {
+            margin: 8px 0 20px 0;
+            text-align: center;
+        }
+        .cta {
+            display: inline-block;
+            padding: 12px 24px;
+            background: #0118FF;
+            color: #ffffff !important;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 15px;
+            border-radius: 6px;
+        }
+        .small {
+            font-size: 13px;
+            color: #666;
+            margin: 16px 0 0 0;
+        }
+        .sign-off {
+            margin-top: 24px;
+            font-size: 14px;
+            color: #555;
+        }
+        .footer {
+            text-align: center;
+            font-size: 12px;
+            color: #999;
+            padding: 20px 0 0;
+        }
+        .store-buttons {
+            text-align: center;
+            margin: 8px 0 8px 0;
+        }
+        .store-buttons a {
+            display: inline-block;
+            margin: 0 8px 8px 8px;
+        }
+        .store-buttons img {
+            height: 40px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="email-wrap">
+        <div class="card">
+            <div class="brand">
+                <img src="https://static.spacecrafted.com/f3a81e09e3c348aaa519f655fc613f4f/i/c677f51b921b42cc8caee4de7e4cb426/1/5feFb8zhrk/FTLogoLongNew.png?dpr=2" alt="Flagship Towing">
+            </div>
+            <div class="divider"></div>
+
+            <p class="greeting">Hi <%= typeof name !== 'undefined' ? name : 'there' %>,</p>
+
+            <p class="message">
+                We're sorry to see you go. This email confirms that the <strong>Flagship Towing</strong> account
+                <% if (typeof email !== 'undefined' && email) { %>associated with <strong><%= email %></strong><% } %>
+                has been deleted.
+            </p>
+
+            <% if (typeof membershipCancelled !== 'undefined' && membershipCancelled) { %>
+            <p class="message">
+                Your membership has been cancelled and will not renew. You will not be billed for any future renewal periods.
+            </p>
+            <% } %>
+
+            <p class="message">
+                Your profile and account details have been removed from the app. Limited records may be retained for accounting purposes, in line with our Privacy Policy.
+            </p>
+
+            <p class="message">
+                If you change your mind, you're welcome back anytime. You can create a new account and start a new membership whenever you're ready.
+            </p>
+
+            <% if (typeof membershipUrl !== 'undefined' && membershipUrl) { %>
+            <div class="cta-wrap">
+                <a class="cta" href="<%= membershipUrl %>">Register again</a>
+            </div>
+            <% } %>
+
+            <div class="store-buttons">
+                <% if (typeof googlePlayUrl !== 'undefined' && googlePlayUrl) { %>
+                <a href="<%= googlePlayUrl %>" target="_blank">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg" alt="Get it on Google Play">
+                </a>
+                <% } %>
+                <% if (typeof appStoreUrl !== 'undefined' && appStoreUrl) { %>
+                <a href="<%= appStoreUrl %>" target="_blank">
+                    <img src="https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg" alt="Download on the App Store">
+                </a>
+                <% } %>
+            </div>
+
+            <p class="small">
+                If you did not request this deletion, please contact us immediately at
+                <a href="mailto:dispatch@flagshiptowing.us" style="color: #0118FF;">dispatch@flagshiptowing.us</a>.
+                For any other questions, reach us at the same address.
+            </p>
+
+            <p class="sign-off">
+                Thank you for choosing Flagship Towing.<br>
+                <strong>The Flagship Towing Team</strong>
+            </p>
+
+            <div class="footer">
+                © <%= new Date().getFullYear() %> Flagship Towing. All rights reserved.
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

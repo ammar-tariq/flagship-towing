@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title><%= verified ? 'Payment Successful' : 'Payment Processing' %> — Flagship Towing</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="color-scheme" content="light">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --brand: #0118FF;
+            --brand-soft: #e8ebff;
+            --ink: #0f172a;
+            --muted: #64748b;
+            --line: #e2e8f0;
+            --ok: #059669;
+            --ok-soft: #ecfdf5;
+            --warn: #d97706;
+            --warn-soft: #fffbeb;
+            --card: #ffffff;
+            --bg: #f1f5f9;
+        }
+        * { box-sizing: border-box; }
+        body {
+            margin: 0;
+            min-height: 100vh;
+            font-family: 'Nunito', system-ui, sans-serif;
+            background:
+                radial-gradient(1200px 500px at 10% -10%, #dbe4ff 0%, transparent 55%),
+                radial-gradient(900px 400px at 100% 0%, #e0e7ff 0%, transparent 50%),
+                var(--bg);
+            color: var(--ink);
+            font-size: 16px;
+            line-height: 1.5;
+        }
+        .wrap {
+            max-width: 520px;
+            margin: 0 auto;
+            padding: 28px 16px 40px;
+        }
+        .card {
+            background: var(--card);
+            border-radius: 16px;
+            padding: 28px 24px 24px;
+            box-shadow: 0 12px 40px rgba(15, 23, 42, 0.08);
+            border: 1px solid rgba(226, 232, 240, 0.9);
+        }
+        .brand {
+            text-align: center;
+            margin-bottom: 18px;
+        }
+        .brand img {
+            max-height: 42px;
+            width: auto;
+        }
+        .status {
+            text-align: center;
+            margin: 8px 0 20px;
+        }
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 14px;
+            border-radius: 999px;
+            font-weight: 700;
+            font-size: 13px;
+            letter-spacing: 0.02em;
+            text-transform: uppercase;
+        }
+        .badge.ok { background: var(--ok-soft); color: var(--ok); }
+        .badge.warn { background: var(--warn-soft); color: var(--warn); }
+        .icon {
+            width: 64px;
+            height: 64px;
+            margin: 0 auto 14px;
+            border-radius: 50%;
+            display: grid;
+            place-items: center;
+            font-size: 28px;
+            font-weight: 800;
+        }
+        .icon.ok { background: var(--ok-soft); color: var(--ok); }
+        .icon.warn { background: var(--warn-soft); color: var(--warn); }
+        h1 {
+            margin: 0 0 8px;
+            font-size: 24px;
+            font-weight: 800;
+            text-align: center;
+            letter-spacing: -0.02em;
+        }
+        .lead {
+            margin: 0 0 22px;
+            text-align: center;
+            color: var(--muted);
+            font-size: 15px;
+        }
+        .summary {
+            border: 1px solid var(--line);
+            border-radius: 12px;
+            overflow: hidden;
+            margin: 0 0 22px;
+        }
+        .summary-row {
+            display: flex;
+            justify-content: space-between;
+            gap: 12px;
+            padding: 12px 14px;
+            border-top: 1px solid var(--line);
+            font-size: 14px;
+        }
+        .summary-row:first-child { border-top: 0; }
+        .summary-row .label { color: var(--muted); font-weight: 600; }
+        .summary-row .value {
+            color: var(--ink);
+            font-weight: 700;
+            text-align: right;
+            word-break: break-word;
+        }
+        .actions {
+            display: grid;
+            gap: 10px;
+        }
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 48px;
+            padding: 12px 18px;
+            border-radius: 10px;
+            font-family: inherit;
+            font-size: 15px;
+            font-weight: 800;
+            text-decoration: none;
+            border: none;
+            cursor: pointer;
+            transition: transform 0.15s ease, opacity 0.15s ease;
+        }
+        .btn:active { transform: scale(0.98); }
+        .btn-primary {
+            background: var(--brand);
+            color: #fff;
+            box-shadow: 0 8px 20px rgba(1, 24, 255, 0.28);
+        }
+        .btn-secondary {
+            background: var(--brand-soft);
+            color: var(--brand);
+        }
+        .btn-ghost {
+            background: transparent;
+            color: var(--muted);
+            border: 1px solid var(--line);
+        }
+        .hint {
+            margin: 16px 0 0;
+            text-align: center;
+            font-size: 13px;
+            color: var(--muted);
+        }
+        .ref {
+            margin-top: 18px;
+            text-align: center;
+            font-size: 12px;
+            color: #94a3b8;
+            word-break: break-all;
+        }
+        .footer {
+            text-align: center;
+            font-size: 12px;
+            color: #94a3b8;
+            padding: 18px 8px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="wrap">
+        <div class="card">
+            <div class="brand">
+                <img src="https://static.spacecrafted.com/f3a81e09e3c348aaa519f655fc613f4f/i/c677f51b921b42cc8caee4de7e4cb426/1/5feFb8zhrk/FTLogoLongNew.png?dpr=2" alt="Flagship Towing">
+            </div>
+
+            <div class="status">
+                <% if (verified) { %>
+                <div class="icon ok" aria-hidden="true">✓</div>
+                <span class="badge ok">Payment successful</span>
+                <% } else { %>
+                <div class="icon warn" aria-hidden="true">…</div>
+                <span class="badge warn">Confirming payment</span>
+                <% } %>
+            </div>
+
+            <h1><%= verified ? 'You\'re all set' : 'Almost there' %></h1>
+            <p class="lead"><%= lead %></p>
+
+            <% const hasSummary = plan_name || amount_formatted || customer_email || vessel_label || interval_label; %>
+            <% if (hasSummary) { %>
+            <div class="summary" role="region" aria-label="Payment summary">
+                <% if (plan_name) { %>
+                <div class="summary-row">
+                    <span class="label">Plan</span>
+                    <span class="value"><%= plan_name %></span>
+                </div>
+                <% } %>
+                <% if (amount_formatted) { %>
+                <div class="summary-row">
+                    <span class="label">Amount</span>
+                    <span class="value"><%= amount_formatted %><%= interval_label ? ' · ' + interval_label : '' %></span>
+                </div>
+                <% } %>
+                <% if (customer_email) { %>
+                <div class="summary-row">
+                    <span class="label">Email</span>
+                    <span class="value"><%= customer_email %></span>
+                </div>
+                <% } %>
+                <% if (vessel_label) { %>
+                <div class="summary-row">
+                    <span class="label">Vessel</span>
+                    <span class="value"><%= vessel_label %></span>
+                </div>
+                <% } %>
+                <% if (payment_status) { %>
+                <div class="summary-row">
+                    <span class="label">Status</span>
+                    <span class="value"><%= payment_status %></span>
+                </div>
+                <% } %>
+            </div>
+            <% } %>
+
+            <div class="actions">
+                <a class="btn btn-primary" href="<%= primary_cta_url %>"><%= primary_cta_label %></a>
+                <% if (secondary_cta_url && secondary_cta_label) { %>
+                <a class="btn btn-secondary" href="<%= secondary_cta_url %>"><%= secondary_cta_label %></a>
+                <% } %>
+            </div>
+
+            <% if (!is_web_checkout && app_deep_link) { %>
+            <p class="hint" id="auto-return">
+                Returning to the app in <span id="auto-return-count">5</span>s ·
+                <a href="#" id="auto-return-stop" style="color: var(--brand); font-weight: 700;">Stay on this page</a>
+            </p>
+            <% } %>
+
+            <p class="hint"><%= hint %></p>
+            <% if (session_id) { %>
+            <p class="ref">Reference: <%= session_id %></p>
+            <% } %>
+        </div>
+        <div class="footer">© <%= year %> Flagship Towing. All rights reserved.</div>
+    </div>
+    <% if (!is_web_checkout && app_deep_link) { %>
+    <script>
+        (function () {
+            var seconds = 5;
+            var target = <%- JSON.stringify(app_deep_link) %>;
+            var countEl = document.getElementById('auto-return-count');
+            var wrapEl = document.getElementById('auto-return');
+            var stopEl = document.getElementById('auto-return-stop');
+            var timer = setInterval(function () {
+                seconds -= 1;
+                if (countEl) countEl.textContent = String(seconds);
+                if (seconds <= 0) {
+                    clearInterval(timer);
+                    window.location.href = target;
+                }
+            }, 1000);
+            if (stopEl) {
+                stopEl.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    clearInterval(timer);
+                    if (wrapEl) wrapEl.style.display = 'none';
+                });
+            }
+        })();
+    </script>
+    <% } %>
+</body>
+</html>
